@@ -102,13 +102,14 @@ body::after {
    SPLASH PAGE
    ════════════════════════════════════════════════════════ */
 #page-splash {
-  display: flex; flex-direction: column;
+  flex-direction: column;
   align-items: center; justify-content: center;
   min-height: 100vh; padding: 3rem 2rem;
   background: radial-gradient(ellipse 100% 70% at 50% 40%,
     rgba(196,154,60,0.05) 0%, transparent 65%);
   position: relative;
 }
+#page-splash.active { display: flex; }
 
 .splash-ornament {
   display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
@@ -649,7 +650,7 @@ body::after {
     <em>Welcome to</em>
     Buchkosky
   </h1>
-  <p class="splash-tagline">A private bar. A long story. Pull up a stool!</p>
+  <p class="splash-tagline">A private bar. A long story. Pull up a stool.</p>
   <button class="splash-enter" onclick="enterBar()">
     <span class="splash-enter-text">Enter the Bar →</span>
   </button>
