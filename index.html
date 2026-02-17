@@ -88,7 +88,15 @@ body::after {
 
 /* ── PAGES ────────────────────────────────────────────── */
 .page { display: none; min-height: 100vh; }
-.page.active { display: block; }
+.page.active { 
+  display: block; 
+  animation: fadeInPage 0.5s ease both;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ════════════════════════════════════════════════════════
    SPLASH PAGE
@@ -686,28 +694,28 @@ body::after {
     <div class="photo-gallery">
       <p class="gallery-title">The Transformation</p>
       <div class="gallery-grid">
-        <div class="gallery-item" onclick="openLightbox('images/IMG_20181021_131021.jpg')">
-          <img src="images/IMG_20181021_131021.jpg" alt="The gift that started it all" class="gallery-img">
+        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG_20181021_131021.jpg')">
+          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG_20181021_131021.jpg" alt="The gift that started it all" class="gallery-img">
           <div class="gallery-caption">The gift that started it all — October 2018</div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('images/IMG_20190323_113015.jpg')">
-          <img src="images/IMG_20190323_113015.jpg" alt="Bar during remodel" class="gallery-img">
+        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG_20190323_113015.jpg')">
+          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG_20190323_113015.jpg" alt="Bar during remodel" class="gallery-img">
           <div class="gallery-caption">Mid-remodel — March 2019</div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('images/IMG_20190323_113024.jpg')">
-          <img src="images/IMG_20190323_113024.jpg" alt="The knotty pine door" class="gallery-img">
+        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG_20190323_113024.jpg')">
+          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG_20190323_113024.jpg" alt="The knotty pine door" class="gallery-img">
           <div class="gallery-caption">The knotty pine sauna door</div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('images/IMG20220525180653.jpg')">
-          <img src="images/IMG20220525180653.jpg" alt="Finished bar" class="gallery-img">
+        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG20220525180653.jpg')">
+          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/IMG20220525180653.jpg" alt="Finished bar" class="gallery-img">
           <div class="gallery-caption">The finished space — 2022</div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('images/PXL_20221226_021705430_PORTRAIT.jpg')">
-          <img src="images/PXL_20221226_021705430_PORTRAIT.jpg" alt="The bottle collection" class="gallery-img">
+        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/PXL_20221226_021705430_PORTRAIT.jpg')">
+          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/PXL_20221226_021705430_PORTRAIT.jpg" alt="The bottle collection" class="gallery-img">
           <div class="gallery-caption">The collection today</div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('images/PXL_20221226_040209534_-_Copy.jpg')">
-          <img src="images/PXL_20221226_040209534_-_Copy.jpg" alt="Pickle supervising" class="gallery-img">
+        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/PXL_20221226_040209534_-_Copy.jpg')">
+          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/images/PXL_20221226_040209534_-_Copy.jpg" alt="Pickle supervising" class="gallery-img">
           <div class="gallery-caption">Pickle on duty</div>
         </div>
       </div>
@@ -929,6 +937,7 @@ function enterBar() {
   document.getElementById('page-splash').classList.remove('active');
   document.getElementById('main-nav').classList.add('visible');
   showPage('menu');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showPage(name) {
@@ -1254,3 +1263,4 @@ function closeLightbox() {
 
 </body>
 </html>
+
