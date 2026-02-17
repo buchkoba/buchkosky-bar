@@ -296,6 +296,55 @@ body::after {
 }
 .venmo-link:hover { border-color: var(--gold); }
 
+.photo-gallery {
+  margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border);
+}
+.gallery-title {
+  font-family: 'Space Mono', monospace; font-size: 9px;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 2rem;
+}
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; margin-bottom: 2rem;
+}
+.gallery-item {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--border); aspect-ratio: 4/3;
+  cursor: pointer; transition: border-color 0.3s;
+}
+.gallery-item:hover { border-color: var(--gold-dim); }
+.gallery-img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.3s;
+}
+.gallery-item:hover .gallery-img { transform: scale(1.05); }
+.gallery-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(14,12,10,0.95));
+  padding: 2rem 1rem 0.75rem; font-size: 0.85rem;
+  font-style: italic; color: var(--text-dim);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.95); align-items: center; justify-content: center;
+  padding: 2rem; cursor: zoom-out;
+}
+.lightbox.active { display: flex; }
+.lightbox-img {
+  max-width: 90%; max-height: 90vh; object-fit: contain;
+  border: 1px solid var(--border);
+}
+.lightbox-close {
+  position: absolute; top: 2rem; right: 2rem;
+  font-family: 'Space Mono', monospace; font-size: 2rem;
+  color: var(--text); cursor: pointer; padding: 0.5rem;
+  transition: color 0.2s;
+}
+.lightbox-close:hover { color: var(--gold); }
+
 /* ════════════════════════════════════════════════════════
    ARCHIVE PAGE
    ════════════════════════════════════════════════════════ */
@@ -634,6 +683,36 @@ body::after {
       <strong style="color:var(--cream);">Tiger</strong> — the spotted one. Conducts nightly quality-control inspections of the back bar shelves.</p>
     </div>
 
+    <div class="photo-gallery">
+      <p class="gallery-title">The Transformation</p>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox('images/IMG_20181021_131021.jpg')">
+          <img src="images/IMG_20181021_131021.jpg" alt="The gift that started it all" class="gallery-img">
+          <div class="gallery-caption">The gift that started it all — October 2018</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/IMG_20190323_113015.jpg')">
+          <img src="images/IMG_20190323_113015.jpg" alt="Bar during remodel" class="gallery-img">
+          <div class="gallery-caption">Mid-remodel — March 2019</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/IMG_20190323_113024.jpg')">
+          <img src="images/IMG_20190323_113024.jpg" alt="The knotty pine door" class="gallery-img">
+          <div class="gallery-caption">The knotty pine sauna door</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/IMG20220525180653.jpg')">
+          <img src="images/IMG20220525180653.jpg" alt="Finished bar" class="gallery-img">
+          <div class="gallery-caption">The finished space — 2022</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/PXL_20221226_021705430_PORTRAIT.jpg')">
+          <img src="images/PXL_20221226_021705430_PORTRAIT.jpg" alt="The bottle collection" class="gallery-img">
+          <div class="gallery-caption">The collection today</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('images/PXL_20221226_040209534_-_Copy.jpg')">
+          <img src="images/PXL_20221226_040209534_-_Copy.jpg" alt="Pickle supervising" class="gallery-img">
+          <div class="gallery-caption">Pickle on duty</div>
+        </div>
+      </div>
+    </div>
+
     <div class="venmo-block">
       <span class="venmo-text">Enjoyed your drinks? Buy Brian a round.</span>
       <a href="https://account.venmo.com/u/Brian-Buchkosky" target="_blank" class="venmo-link">♥ Venmo @Brian-Buchkosky</a>
@@ -734,7 +813,7 @@ body::after {
         <label for="admin-drink-special">Mark as Tonight's Special</label>
       </div>
       <button class="admin-btn" style="width:auto; padding:0.75rem 2rem;" onclick="adminAddDrink()">Add to Menu</button>
-    </div>liqueur
+    </div>
 
     <!-- Current Drink List -->
     <div class="admin-section">
@@ -836,7 +915,7 @@ let state = {
   archiveSearch: '',
 };
 
-const ADMIN_PASS = 'Ghost99**';
+const ADMIN_PASS = 'buchkosky2025';
 
 function saveState() {
   localStorage.setItem('bk_menu', JSON.stringify(state.menu));
@@ -1152,6 +1231,26 @@ document.querySelector('.nav-brand').addEventListener('click', () => {
     showPage('admin');
   }
 });
+
+// ════════════════════════════════════════════════════════
+// LIGHTBOX
+// ════════════════════════════════════════════════════════
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
 </script>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">×</span>
+  <img src="" alt="" class="lightbox-img" id="lightbox-img">
+</div>
+
 </body>
 </html>
