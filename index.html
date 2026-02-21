@@ -453,7 +453,13 @@ body::after {
     <button class="nav-link" onclick="showPage('about')">About</button>
     <button class="nav-link" onclick="showPage('archive')">Archive</button>
   </div>
-  <a href="https://www.instagram.com/buchkosky/" target="_blank" class="nav-instagram" title="Instagram">&#9679;</a>
+  <a href="https://www.instagram.com/buchkosky/" target="_blank" class="nav-instagram" title="Instagram">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </svg>
+  </a>
 </nav>
 
 <!-- ════════════════════════════════════════════════════════
@@ -470,7 +476,7 @@ body::after {
     <em>Welcome to</em>
     Buchkosky
   </h1>
-  <p class="splash-tagline">A private bar. A long story. Pull up a stool!</p>
+  <p class="splash-tagline">A private bar. A hidden sauna. Pull up a stool!</p>
   <button class="splash-enter" onclick="enterBar()">
     <span class="splash-enter-text">Enter the Bar →</span>
   </button>
@@ -512,6 +518,14 @@ body::after {
         <div class="drink-card">
           <div class="drink-name">Muppets Drink Manhattan</div>
           <div class="drink-ingredients">2 Rye, .5 Amaro, .5 Sweet Vermouth, Angostura, Peychauds, & Orange Bitters</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Midnight in New Orleans</div>
+          <div class="drink-ingredients">2 Rye, .75 Sweet Vermouth, .25 Benedictine, .25 Coffee Infused Cappelletti, 2 Peychaud's, Twist</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Stone Fruit Orchard</div>
+          <div class="drink-ingredients">2 Rye, .5 Sweet Vermouth, .5 Amaro Di Angostura, .25 Giffard Apricot, Orange Bitters, Twist</div>
         </div>
       </div>
     </div>
@@ -593,12 +607,12 @@ body::after {
     <div class="about-pull">"Rather than saying 'I can make you anything,' I started making menus. It's a lot easier to pick a drink from a list."</div>
     <p class="about-p">That collection became the seed of something bigger. The basement's hot tub, sauna, and wall-bar were gutted and rebuilt from scratch — navy cabinetry, marble countertops, penny tile backsplash, and a bold botanical mural that makes the whole room feel like it was always meant to be a bar. The original knotty pine sauna door still stands in the corner, crescent moon cutout and all, hiding the old sauna behind it.</p>
     <p class="about-p">As the collection grew past 100 bottles, so did the ambition. Each party, each season, each occasion gets its own menu — a curated selection of classics, riffs, and originals developed over a decade of hosting pool parties, holiday gatherings, and everything in between. The Buchkosky Old Fashioned has been on every menu. So has Freddie's Float.</p>
-    <p class="about-p">Pickle and Tiger are the official bar staff. They work for neither tips nor wages, but Pickle has strong opinions about which bar stool is hers.</p>
+    <p class="about-p">Pickle is the official bar staff. She works for neither tips nor wages, but has strong opinions about which bar stool is hers.</p>
 
     <div class="about-cats">
       <p class="about-cats-title">Bar Staff</p>
       <p class="about-cats-text"><strong style="color:var(--cream);">Pickle</strong> — the white one. Considers the bar stools her personal furniture. Blue eyes, strong opinions.<br>
-      <strong style="color:var(--cream);">Tiger</strong> — the spotted one. Conducts nightly quality-control inspections of the back bar shelves.</p>
+      <strong style="color:var(--cream);">Tiger</strong> — the spotted one. Conducted nightly quality-control inspections of the back bar shelves for many years. Dearly missed.</p>
     </div>
 
     <div class="photo-gallery">
@@ -847,6 +861,8 @@ const FULL_ARCHIVE = [
   { name: "In Cold Blodo", ingredients: "1 Rye, 1 Cynar, 1 Sweet Vermouth, Twist", category: "Less Fruit" },
   { name: "Cherry Carray", ingredients: "2 Rye, .5 Cherry Heering, .5 Benedictine, Twist", category: "Less Fruit" },
   { name: "Haurt Man Here", ingredients: "1.5 Tequila, .75 Amaro, .75 Sweet Vermouth", category: "Less Fruit" },
+  { name: "Midnight in New Orleans", ingredients: "2 Rye, .75 Sweet Vermouth, .25 Benedictine, .25 Coffee Infused Cappelletti, 2 Peychaud's, Twist", category: "Less Fruit" },
+  { name: "Stone Fruit Orchard", ingredients: "2 Rye, .5 Sweet Vermouth, .5 Amaro Di Angostura, .25 Giffard Apricot, Orange Bitters, Twist", category: "Less Fruit" },
   { name: "Paper Plane", ingredients: ".75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lemon", category: "More Fruit" },
   { name: "Water Lily", ingredients: ".75 Gin, .75 Orange Liquor, .75 Lemon, .75 Violette", category: "More Fruit" },
   { name: "Margarita", ingredients: "2 Tequila, .75 Orange, .75 Lime, .25 Simple", category: "More Fruit" },
@@ -886,6 +902,8 @@ const CURRENT_MENU = [
   "Sazerac",
   "Vieux Carré",
   "Muppets Drink Manhattan",
+  "Midnight in New Orleans",
+  "Stone Fruit Orchard",
   "Paper Plane",
   "Water Lily",
   "Margarita",
