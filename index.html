@@ -24,7 +24,6 @@ body {
   --gold-dim: rgba(196,154,60,0.25);
   --cream: #F5EFE0;
   --charcoal: #0e0c0a;
-  --charcoal-2: #1a1714;
   --text: #d4c9b0;
   --text-dim: rgba(212,201,176,0.5);
   --text-faint: rgba(212,201,176,0.25);
@@ -39,20 +38,6 @@ body::after {
   opacity: 0.022; mix-blend-mode: overlay;
 }
 
-/* ── TYPOGRAPHY HELPERS ───────────────────────────────── */
-.mono { font-family: 'Space Mono', monospace; }
-.serif { font-family: 'Playfair Display', serif; }
-.display { font-family: 'Bebas Neue', sans-serif; }
-.eyebrow {
-  font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold);
-}
-.section-rule {
-  width: 100%; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-  margin: 0;
-}
-
 /* ── NAV ──────────────────────────────────────────────── */
 #main-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -65,8 +50,9 @@ body::after {
 .nav-brand {
   font-family: 'Playfair Display', serif; font-size: 1rem;
   font-style: italic; color: var(--gold); margin-right: auto;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.02em; cursor: pointer; transition: opacity 0.2s;
 }
+.nav-brand:hover { opacity: 0.7; }
 .nav-links { display: flex; gap: 0; }
 .nav-link {
   font-family: 'Space Mono', monospace; font-size: 9px;
@@ -105,8 +91,9 @@ body::after {
   flex-direction: column;
   align-items: center; justify-content: center;
   min-height: 100vh; padding: 3rem 2rem;
-  background: radial-gradient(ellipse 100% 70% at 50% 40%,
-    rgba(196,154,60,0.05) 0%, transparent 65%);
+  background: 
+    linear-gradient(rgba(14,12,10,0.7), rgba(14,12,10,0.7)),
+    url('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG20220525180653.jpg') center/cover no-repeat;
   position: relative;
 }
 #page-splash.active { display: flex; }
@@ -268,7 +255,6 @@ body::after {
   font-size: 1.15rem; line-height: 1.9; color: var(--text-dim);
   margin-bottom: 1.75rem;
 }
-.about-p:last-of-type { margin-bottom: 0; }
 .about-pull {
   font-family: 'Playfair Display', serif; font-style: italic;
   font-size: 1.5rem; color: var(--cream); line-height: 1.5;
@@ -311,7 +297,18 @@ body::after {
 .gallery-title {
   font-family: 'Space Mono', monospace; font-size: 9px;
   letter-spacing: 0.35em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 2rem;
+  color: var(--gold); margin-bottom: 3rem;
+}
+.gallery-section {
+  margin-bottom: 3rem;
+}
+.gallery-section:last-child {
+  margin-bottom: 0;
+}
+.gallery-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700; color: var(--cream);
+  margin-bottom: 1.5rem; font-style: italic;
 }
 .gallery-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -335,7 +332,6 @@ body::after {
   font-style: italic; color: var(--text-dim);
 }
 
-/* Lightbox */
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 9999;
   background: rgba(0,0,0,0.95); align-items: center; justify-content: center;
@@ -433,184 +429,10 @@ body::after {
   text-align: center; font-size: 1.1rem;
 }
 
-/* ════════════════════════════════════════════════════════
-   PAST MENUS PAGE
-   ════════════════════════════════════════════════════════ */
-#page-past { padding-top: var(--nav-h); }
-
-.past-header {
-  padding: 4rem 2rem 3rem; max-width: 720px; margin: 0 auto;
-  border-bottom: 1px solid var(--border);
-}
-.past-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 900; color: var(--cream); line-height: 1; letter-spacing: -0.02em;
-}
-
-.past-body { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-.past-menu-item {
-  padding: 1.5rem 0; border-bottom: 1px solid var(--border);
-  cursor: pointer; transition: all 0.2s;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-}
-.past-menu-item:hover .past-menu-name { color: var(--gold); }
-.past-menu-item:hover .past-arrow { color: var(--gold); }
-.past-menu-name {
-  font-family: 'Playfair Display', serif; font-size: 1.2rem;
-  font-weight: 700; color: var(--cream); transition: color 0.2s;
-}
-.past-menu-date {
-  font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.2em; color: var(--text-faint);
-  text-transform: uppercase; margin-top: 0.3rem;
-}
-.past-arrow { color: var(--text-faint); font-size: 1.2rem; transition: color 0.2s; }
-.past-empty {
-  font-style: italic; color: var(--text-faint); padding: 3rem 0;
-  text-align: center; font-size: 1.1rem;
-}
-
-/* Past menu detail view */
-.past-detail { display: none; }
-.past-detail.active { display: block; }
-.past-back {
-  font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--text-dim); background: none; border: none;
-  cursor: pointer; padding: 0; margin-bottom: 2rem;
-  display: flex; align-items: center; gap: 0.5rem;
-  transition: color 0.2s;
-}
-.past-back:hover { color: var(--gold); }
-
-/* ════════════════════════════════════════════════════════
-   ADMIN PAGE
-   ════════════════════════════════════════════════════════ */
-#page-admin { padding-top: var(--nav-h); background: #0a0908; }
-#admin-login {
-  min-height: calc(100vh - var(--nav-h));
-  display: flex; align-items: center; justify-content: center;
-  padding: 2rem;
-}
-.admin-login-box {
-  border: 1px solid var(--border); padding: 3rem; max-width: 380px; width: 100%;
-}
-.admin-login-title {
-  font-family: 'Playfair Display', serif; font-size: 1.5rem;
-  font-weight: 700; color: var(--cream); margin-bottom: 0.5rem;
-}
-.admin-login-sub {
-  font-style: italic; color: var(--text-faint); font-size: 0.95rem;
-  margin-bottom: 2rem;
-}
-.admin-input {
-  width: 100%; background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border); color: var(--text);
-  font-family: 'Space Mono', monospace; font-size: 0.9rem;
-  padding: 0.85rem 1rem; outline: none; margin-bottom: 1rem;
-  transition: border-color 0.2s;
-}
-.admin-input:focus { border-color: var(--gold-dim); }
-.admin-btn {
-  width: 100%; background: var(--gold); border: none;
-  color: #0a0908; font-family: 'Space Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  padding: 1rem; cursor: pointer; transition: background 0.2s;
-}
-.admin-btn:hover { background: var(--gold-light); }
-.admin-btn.secondary {
-  background: none; border: 1px solid var(--border);
-  color: var(--text-dim); margin-top: 0.5rem;
-}
-.admin-btn.secondary:hover { border-color: var(--gold-dim); color: var(--text); }
-.admin-btn.danger {
-  background: rgba(180,60,60,0.15); border: 1px solid rgba(180,60,60,0.3);
-  color: #c47a7a;
-}
-.admin-btn.danger:hover { background: rgba(180,60,60,0.25); }
-.admin-error { color: #c47a7a; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
-
-#admin-panel { display: none; padding: 2rem; max-width: 900px; margin: 0 auto; }
-.admin-panel-title {
-  font-family: 'Playfair Display', serif; font-size: 2rem;
-  font-weight: 900; color: var(--cream); margin-bottom: 0.5rem;
-}
-.admin-section {
-  border: 1px solid var(--border); padding: 2rem; margin-bottom: 1.5rem;
-}
-.admin-section-title {
-  font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1.25rem;
-}
-.admin-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
-.admin-input-sm {
-  flex: 1; min-width: 140px; background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border); color: var(--text);
-  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
-  padding: 0.65rem 0.9rem; outline: none; transition: border-color 0.2s;
-}
-.admin-input-sm:focus { border-color: var(--gold-dim); }
-.admin-select {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  color: var(--text); font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.1em; padding: 0.65rem 0.9rem; outline: none;
-  cursor: pointer;
-}
-.admin-checkbox-row {
-  display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;
-}
-.admin-checkbox-row label {
-  font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim);
-  cursor: pointer;
-}
-.admin-drink-list { margin-top: 1.5rem; }
-.admin-drink-row {
-  display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(196,154,60,0.07);
-}
-.admin-drink-info { flex: 1; }
-.admin-drink-title {
-  font-family: 'Playfair Display', serif; font-size: 0.95rem;
-  font-weight: 600; color: var(--cream);
-}
-.admin-drink-meta {
-  font-size: 0.8rem; font-style: italic; color: var(--text-faint); margin-top: 0.2rem;
-}
-.admin-drink-special {
-  font-family: 'Space Mono', monospace; font-size: 7px;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold); border: 1px solid var(--gold-dim);
-  padding: 0.1rem 0.4rem; margin-left: 0.5rem;
-}
-.admin-drink-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
-.admin-icon-btn {
-  background: none; border: 1px solid var(--border);
-  color: var(--text-faint); font-size: 0.85rem; padding: 0.3rem 0.6rem;
-  cursor: pointer; transition: all 0.2s; font-family: 'Space Mono', monospace;
-  font-size: 9px; letter-spacing: 0.1em;
-}
-.admin-icon-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
-.admin-icon-btn.del:hover { border-color: rgba(180,60,60,0.4); color: #c47a7a; }
-.admin-toast {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 9998;
-  background: var(--gold); color: #0a0908;
-  font-family: 'Space Mono', monospace; font-size: 9px;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  padding: 0.85rem 1.5rem; transform: translateY(100px);
-  opacity: 0; transition: all 0.3s;
-}
-.admin-toast.show { transform: translateY(0); opacity: 1; }
-
 /* ── ANIMATIONS ───────────────────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; } to { opacity: 1; }
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────── */
@@ -618,7 +440,6 @@ body::after {
   .nav-links .nav-link:nth-child(n+3) { display: none; }
   .drinks-grid { grid-template-columns: 1fr; }
   .archive-grid { grid-template-columns: 1fr; }
-  #admin-panel { padding: 1rem; }
 }
 </style>
 </head>
@@ -626,12 +447,11 @@ body::after {
 
 <!-- ── NAV ──────────────────────────────────────────────── -->
 <nav id="main-nav">
-  <span class="nav-brand">Buchkosky Bar</span>
+  <span class="nav-brand" onclick="goHome()">Buchkosky Bar</span>
   <div class="nav-links">
     <button class="nav-link active" onclick="showPage('menu')">Menu</button>
     <button class="nav-link" onclick="showPage('about')">About</button>
     <button class="nav-link" onclick="showPage('archive')">Archive</button>
-    <button class="nav-link" onclick="showPage('past')">Past Menus</button>
   </div>
   <a href="https://www.instagram.com/buchkosky/" target="_blank" class="nav-instagram" title="Instagram">&#9679;</a>
 </nav>
@@ -650,7 +470,7 @@ body::after {
     <em>Welcome to</em>
     Buchkosky
   </h1>
-  <p class="splash-tagline">A private bar. A long story. Pull up a stool.</p>
+  <p class="splash-tagline">A private bar. A long story. Pull up a stool!</p>
   <button class="splash-enter" onclick="enterBar()">
     <span class="splash-enter-text">Enter the Bar →</span>
   </button>
@@ -662,13 +482,102 @@ body::after {
 <div id="page-menu" class="page">
   <div class="menu-hero">
     <div class="menu-hero-meta">
-      <span class="menu-season-badge" id="menu-season-badge">Fall</span>
-      <span class="menu-date" id="menu-date-display"></span>
+      <span class="menu-season-badge">Fall</span>
+      <span class="menu-date">February 2026</span>
     </div>
-    <h1 class="menu-title" id="menu-title-display">Menu of the Day</h1>
-    <p class="menu-subtitle" id="menu-subtitle-display"></p>
+    <h1 class="menu-title">Menu of the Day</h1>
+    <p class="menu-subtitle"></p>
   </div>
-  <div class="menu-body" id="menu-body"></div>
+  
+  <div class="menu-body">
+    <!-- Less Fruit -->
+    <div class="menu-category">
+      <div class="cat-header">
+        <span class="cat-title">Less Fruit</span>
+        <div class="cat-rule"></div>
+      </div>
+      <div class="drinks-grid">
+        <div class="drink-card is-special">
+          <div class="drink-name">Buchkosky Old Fashioned</div>
+          <div class="drink-ingredients">2 Bourbon, .25 Chai Demerara Simple, Trinity Bitters</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Sazerac</div>
+          <div class="drink-ingredients">1 Rye, .5 Cognac, .5 Apple Brandy, .25 Demerara, Peychauds, Ango, Absinthe</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Vieux Carré</div>
+          <div class="drink-ingredients">.75 Rye, .75 Sweet Vermouth, .75 Brandy, bar spoon Benedictine, Peychauds, Angostura</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Muppets Drink Manhattan</div>
+          <div class="drink-ingredients">2 Rye, .5 Amaro, .5 Sweet Vermouth, Angostura, Peychauds, & Orange Bitters</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- More Fruit -->
+    <div class="menu-category">
+      <div class="cat-header">
+        <span class="cat-title">More Fruit</span>
+        <div class="cat-rule"></div>
+      </div>
+      <div class="drinks-grid">
+        <div class="drink-card is-special">
+          <div class="drink-name">Paper Plane</div>
+          <div class="drink-ingredients">.75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lemon</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Water Lily</div>
+          <div class="drink-ingredients">.75 Gin, .75 Orange Liquor, .75 Lemon, .75 Violette</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Margarita</div>
+          <div class="drink-ingredients">2 Tequila, .75 Orange, .75 Lime, .25 Simple</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Disguised in Mexico</div>
+          <div class="drink-ingredients">1 Pineapple Chipotle Gin, 1 Tequila, .25 Simple, .75 Grapefruit, .75 Lime</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- After -->
+    <div class="menu-category">
+      <div class="cat-header">
+        <span class="cat-title">After</span>
+        <div class="cat-rule"></div>
+      </div>
+      <div class="drinks-grid">
+        <div class="drink-card">
+          <div class="drink-name">Kentucky Carajillo</div>
+          <div class="drink-ingredients">2 Bourbon Cream, 2 Cold Brew Coffee, .5 Liquor 43</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Freddie's Float</div>
+          <div class="drink-ingredients">Bourbon Cream & Root Beer (& maybe Ice Cream)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Booze -->
+    <div class="menu-category">
+      <div class="cat-header">
+        <span class="cat-title">No Booze</span>
+        <div class="cat-rule"></div>
+      </div>
+      <div class="drinks-grid">
+        <div class="drink-card">
+          <div class="drink-name">Faux Fashioned</div>
+          <div class="drink-ingredients">2 NA Bourbon, .25 Chai Demerara Simple, Twist</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Gimlet</div>
+          <div class="drink-ingredients">2 NA Gin, .75 Simple, .75 Lime</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════
@@ -693,23 +602,153 @@ body::after {
     </div>
 
     <div class="photo-gallery">
-      <p class="gallery-title">The Transformation</p>
-      <div class="gallery-grid">
-        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG_20181021_131021.jpg')">
-          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG_20181021_131021.jpg" alt="The gift that started it all" class="gallery-img">
-          <div class="gallery-caption">The gift that started it all — October 2018</div>
+      <p class="gallery-title">The Journey</p>
+      
+      <!-- Before -->
+      <div class="gallery-section">
+        <h3 class="gallery-section-title">Before — The Gift</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-0.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-0.jpg" alt="Before the bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-1.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-1.jpg" alt="Before the bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-2.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-2.jpg" alt="Before the bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-3.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-3.jpg" alt="Before the bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-4.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-4.jpg" alt="Before the bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-5.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-5.jpg" alt="Before the bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-6.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/before-6.jpg" alt="Before the bar" class="gallery-img">
+          </div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG_20190323_113015.jpg')">
-          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG_20190323_113015.jpg" alt="Bar during remodel" class="gallery-img">
-          <div class="gallery-caption">Mid-remodel — March 2019</div>
+      </div>
+
+      <!-- Build -->
+      <div class="gallery-section">
+        <h3 class="gallery-section-title">The Build</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-1.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-1.jpg" alt="Construction" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-2.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-2.jpg" alt="Construction" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-3.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-3.jpg" alt="Construction" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-4.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-4.jpg" alt="Construction" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-5.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-5.jpg" alt="Construction" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-6.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/build-6.jpg" alt="Construction" class="gallery-img">
+          </div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG_20190323_113024.jpg')">
-          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG_20190323_113024.jpg" alt="The knotty pine door" class="gallery-img">
-          <div class="gallery-caption">The knotty pine sauna door</div>
+      </div>
+
+      <!-- Full Bar -->
+      <div class="gallery-section">
+        <h3 class="gallery-section-title">The Finished Bar</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-0.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-0.jpg" alt="Finished bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-1.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-1.jpg" alt="Finished bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-2.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-2.jpg" alt="Finished bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-3.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-3.jpg" alt="Finished bar" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-4.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/fullbar-4.jpg" alt="Finished bar" class="gallery-img">
+          </div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG20220525180653.jpg')">
-          <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/IMG20220525180653.jpg" alt="Finished bar" class="gallery-img">
-          <div class="gallery-caption">The finished space — 2022</div>
+      </div>
+
+      <!-- Cocktails -->
+      <div class="gallery-section">
+        <h3 class="gallery-section-title">The Cocktails</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-1.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-1.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-2.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-2.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-3.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-3.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-4.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-4.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-5.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-5.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-6.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-6.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-7.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-7.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-8.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-8.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-9.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-9.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-10.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-10.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-11.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-11.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-12.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-12.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-13.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-13.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-14.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-14.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-15.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-15.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-16.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-16.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-17.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-17.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-18.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-18.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-19.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-19.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-20.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-20.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-21.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-21.jpg" alt="Cocktail" class="gallery-img">
+          </div>
+          <div class="gallery-item" onclick="openLightbox('https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-22.jpg')">
+            <img src="https://raw.githubusercontent.com/buchkoba/buchkosky-bar/main/Images/cocktail-22.jpg" alt="Cocktail" class="gallery-img">
+          </div>
         </div>
       </div>
     </div>
@@ -737,126 +776,22 @@ body::after {
     <button class="filter-btn" onclick="filterArchive('More Fruit', this)">More Fruit</button>
     <button class="filter-btn" onclick="filterArchive('After', this)">After</button>
     <button class="filter-btn" onclick="filterArchive('NA', this)">No Booze</button>
-    <button class="filter-btn" onclick="filterArchive('Special', this)">Specials</button>
     <input type="text" class="archive-search" id="archive-search"
       placeholder="Search drinks..." oninput="searchArchive(this.value)">
   </div>
   <div class="archive-body" id="archive-body"></div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════
-     PAST MENUS
-     ════════════════════════════════════════════════════════ -->
-<div id="page-past" class="page">
-  <div class="past-header">
-    <p class="eyebrow" style="margin-bottom:1rem;">History</p>
-    <h1 class="past-title">Past Menus</h1>
-  </div>
-  <div class="past-body">
-    <div id="past-list"></div>
-    <div id="past-detail" class="past-detail">
-      <button class="past-back" onclick="showPastList()">← Back to all menus</button>
-      <div id="past-detail-content"></div>
-    </div>
-  </div>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">×</span>
+  <img src="" alt="" class="lightbox-img" id="lightbox-img">
 </div>
-
-<!-- ════════════════════════════════════════════════════════
-     ADMIN
-     ════════════════════════════════════════════════════════ -->
-<div id="page-admin" class="page">
-  <!-- LOGIN -->
-  <div id="admin-login">
-    <div class="admin-login-box">
-      <h2 class="admin-login-title">Admin</h2>
-      <p class="admin-login-sub">Buchkosky Bar management panel</p>
-      <input type="password" class="admin-input" id="admin-password"
-        placeholder="Password" onkeydown="if(event.key==='Enter')adminLogin()">
-      <button class="admin-btn" onclick="adminLogin()">Enter</button>
-      <p class="admin-error" id="admin-error">Incorrect password.</p>
-    </div>
-  </div>
-
-  <!-- PANEL -->
-  <div id="admin-panel">
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
-      <h1 class="admin-panel-title">Admin Panel</h1>
-      <button class="admin-btn secondary" style="width:auto; padding:0.6rem 1.5rem;" onclick="adminLogout()">Log Out</button>
-    </div>
-
-    <!-- Menu Settings -->
-    <div class="admin-section">
-      <p class="admin-section-title">Current Menu Settings</p>
-      <div class="admin-row">
-        <input type="text" class="admin-input-sm" id="admin-menu-title" placeholder="Menu title (e.g. Fall, Christmas)">
-        <input type="text" class="admin-input-sm" id="admin-menu-subtitle" placeholder="Subtitle (optional)">
-      </div>
-      <button class="admin-btn" style="width:auto; padding:0.75rem 2rem;" onclick="saveMenuSettings()">Save Settings</button>
-    </div>
-
-    <!-- Add Drink -->
-    <div class="admin-section">
-      <p class="admin-section-title">Add a Cocktail to Tonight's Menu</p>
-      <div class="admin-row">
-        <input type="text" class="admin-input-sm" id="admin-drink-name" placeholder="Drink name">
-        <input type="text" class="admin-input-sm" id="admin-drink-ingredients" placeholder="Ingredients">
-      </div>
-      <div class="admin-row">
-        <select class="admin-select" id="admin-drink-category">
-          <option value="Less Fruit">Less Fruit</option>
-          <option value="More Fruit">More Fruit</option>
-          <option value="After">After</option>
-          <option value="NA">No Booze (NA)</option>
-        </select>
-      </div>
-      <div class="admin-checkbox-row">
-        <input type="checkbox" id="admin-drink-special">
-        <label for="admin-drink-special">Mark as Tonight's Special</label>
-      </div>
-      <button class="admin-btn" style="width:auto; padding:0.75rem 2rem;" onclick="adminAddDrink()">Add to Menu</button>
-    </div>
-
-    <!-- Current Drink List -->
-    <div class="admin-section">
-      <p class="admin-section-title">Current Menu Drinks</p>
-      <div class="admin-drink-list" id="admin-drink-list"></div>
-      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border);">
-        <p class="admin-section-title" style="margin-bottom:1rem;">Archive this menu as a past menu</p>
-        <button class="admin-btn secondary" style="width:auto; padding:0.75rem 2rem;" onclick="archiveCurrentMenu()">Save to Past Menus</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Toast -->
-<div class="admin-toast" id="admin-toast"></div>
 
 <script>
 // ════════════════════════════════════════════════════════
-// DATA STORE
+// FULL ARCHIVE DATA
 // ════════════════════════════════════════════════════════
-const DEFAULT_MENU = {
-  title: "Menu of the Day",
-  season: "Fall",
-  subtitle: "Pull up a stool.",
-  drinks: [
-    { id: 1, name: "Buchkosky Old Fashioned", ingredients: "2 Bourbon, .25 Chai Demerara Simple, Trinity Bitters", category: "Less Fruit", special: true },
-    { id: 2, name: "Sazerac", ingredients: "1 Rye, .5 Cognac, .5 Apple Brandy, .25 Demerara Simple, Peychauds, Ango, Absinthe", category: "Less Fruit", special: false },
-    { id: 3, name: "Vieux Carré", ingredients: ".75 Rye, .75 Sweet Vermouth, .75 Brandy, bar spoon Benedictine, Peychauds, Angostura", category: "Less Fruit", special: false },
-    { id: 4, name: "Muppets Drink Manhattan", ingredients: "2 Rye, .5 Amaro, .5 Sweet Vermouth, Angostura, Peychauds, & Orange Bitters", category: "Less Fruit", special: false },
-    { id: 5, name: "A La Louisiane", ingredients: "2 Rye, .75 Sweet Vermouth, .75 Benedictine, Peychauds, Angostura, Absinthe Rinse, Cherry", category: "Less Fruit", special: false },
-    { id: 6, name: "Paper Plane", ingredients: ".75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lemon", category: "More Fruit", special: true },
-    { id: 7, name: "Water Lily", ingredients: ".75 Gin, .75 oz Orange Liquor, .75 oz Lemon Juice, .75 Violette Liquor", category: "More Fruit", special: false },
-    { id: 8, name: "Margarita", ingredients: "2 Tequila, .75 Orange, .75 Lime, .25 Simple", category: "More Fruit", special: false },
-    { id: 9, name: "Disguised in Mexico", ingredients: "1 Pineapple Chipotle Gin, 1 Tequila, .25 Simple, .75 Grapefruit Liquor, .75 Lime", category: "More Fruit", special: false },
-    { id: 10, name: "Aperol Sour", ingredients: "2 Aperol, .5 Gin, .25 Simple, .5 Lemon", category: "More Fruit", special: false },
-    { id: 11, name: "Kentucky Carajillo", ingredients: "2 Bourbon Cream, 2 Cold Brew Coffee, .5 Liquor 43", category: "After", special: false },
-    { id: 12, name: "Freddie's Float", ingredients: "Bourbon Cream & Root Beer (& maybe Ice Cream)", category: "After", special: false },
-    { id: 13, name: "Faux Fashioned", ingredients: "2 NA Bourbon, .25 Chai Demerara Simple, Twist", category: "NA", special: false },
-    { id: 14, name: "Gimlet", ingredients: "2 NA Gin, .75 Simple, .75 Lime", category: "NA", special: false },
-  ]
-};
-
 const FULL_ARCHIVE = [
   { name: "Buchkosky Old Fashioned", ingredients: "2 Bourbon, .25 Chai Demerara Simple, Trinity Bitters", category: "Less Fruit" },
   { name: "Sazerac", ingredients: "1 Rye, .5 Cognac, .5 Apple Brandy, .25 Demerara Simple, Peychauds, Ango, Absinthe", category: "Less Fruit" },
@@ -875,7 +810,7 @@ const FULL_ARCHIVE = [
   { name: "Cherry Carray", ingredients: "2 Rye, .5 Cherry Heering, .5 Benedictine, Twist", category: "Less Fruit" },
   { name: "Haurt Man Here", ingredients: "1.5 Tequila, .75 Amaro, .75 Sweet Vermouth", category: "Less Fruit" },
   { name: "Paper Plane", ingredients: ".75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lemon", category: "More Fruit" },
-  { name: "Water Lily", ingredients: ".75 Gin, .75 oz Orange Liquor, .75 oz Lemon Juice, .75 Violette Liquor", category: "More Fruit" },
+  { name: "Water Lily", ingredients: ".75 Gin, .75 Orange Liquor, .75 Lemon, .75 Violette", category: "More Fruit" },
   { name: "Margarita", ingredients: "2 Tequila, .75 Orange, .75 Lime, .25 Simple", category: "More Fruit" },
   { name: "Disguised in Mexico", ingredients: "1 Pineapple Chipotle Gin, 1 Tequila, .25 Simple, .75 Grapefruit Liquor, .75 Lime", category: "More Fruit" },
   { name: "Aperol Sour", ingredients: "2 Aperol, .5 Gin, .25 Simple, .5 Lemon", category: "More Fruit" },
@@ -906,26 +841,39 @@ const FULL_ARCHIVE = [
 ];
 
 // ════════════════════════════════════════════════════════
+// CURRENT MENU (drinks showing "On Menu" tag in archive)
+// ════════════════════════════════════════════════════════
+const CURRENT_MENU = [
+  "Buchkosky Old Fashioned",
+  "Sazerac",
+  "Vieux Carré",
+  "Muppets Drink Manhattan",
+  "Paper Plane",
+  "Water Lily",
+  "Margarita",
+  "Disguised in Mexico",
+  "Kentucky Carajillo",
+  "Freddie's Float",
+  "Faux Fashioned",
+  "Gimlet"
+];
+
+// ════════════════════════════════════════════════════════
 // STATE
 // ════════════════════════════════════════════════════════
-let state = {
-  menu: JSON.parse(localStorage.getItem('bk_menu') || JSON.stringify(DEFAULT_MENU)),
-  pastMenus: JSON.parse(localStorage.getItem('bk_past') || '[]'),
-  adminLoggedIn: false,
-  archiveFilter: 'all',
-  archiveSearch: '',
-};
-
-const ADMIN_PASS = 'buchkosky2025';
-
-function saveState() {
-  localStorage.setItem('bk_menu', JSON.stringify(state.menu));
-  localStorage.setItem('bk_past', JSON.stringify(state.pastMenus));
-}
+let archiveFilter = 'all';
+let archiveSearch = '';
 
 // ════════════════════════════════════════════════════════
 // NAVIGATION
 // ════════════════════════════════════════════════════════
+function goHome() {
+  document.getElementById('main-nav').classList.remove('visible');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-splash').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function enterBar() {
   document.getElementById('page-splash').classList.remove('active');
   document.getElementById('main-nav').classList.add('visible');
@@ -938,73 +886,27 @@ function showPage(name) {
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   const links = document.querySelectorAll('.nav-link');
-  const pages = ['menu','about','archive','past'];
+  const pages = ['menu','about','archive'];
   const idx = pages.indexOf(name);
   if (idx >= 0) links[idx].classList.add('active');
   window.scrollTo(0, 0);
-  if (name === 'menu') renderMenu();
   if (name === 'archive') renderArchive();
-  if (name === 'past') renderPastList();
-}
-
-// ════════════════════════════════════════════════════════
-// MENU RENDER
-// ════════════════════════════════════════════════════════
-function renderMenu() {
-  const m = state.menu;
-  document.getElementById('menu-season-badge').textContent = m.season || 'Tonight';
-  document.getElementById('menu-title-display').textContent = m.title || 'Menu of the Day';
-  document.getElementById('menu-subtitle-display').textContent = m.subtitle || '';
-  const now = new Date();
-  document.getElementById('menu-date-display').textContent =
-    now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-  const categories = ['Less Fruit', 'More Fruit', 'After', 'NA'];
-  const catLabels = { 'Less Fruit': 'Less Fruit', 'More Fruit': 'More Fruit', 'After': 'After', 'NA': 'No Booze' };
-  let html = '';
-  categories.forEach(cat => {
-    const drinks = m.drinks.filter(d => d.category === cat);
-    if (!drinks.length) return;
-    html += `<div class="menu-category">
-      <div class="cat-header">
-        <span class="cat-title">${catLabels[cat]}</span>
-        <div class="cat-rule"></div>
-      </div>
-      <div class="drinks-grid">`;
-    drinks.forEach(d => {
-      html += `<div class="drink-card${d.special ? ' is-special' : ''}">
-        <div class="drink-name">${d.name}</div>
-        <div class="drink-ingredients">${d.ingredients}</div>
-      </div>`;
-    });
-    html += `</div></div>`;
-  });
-  document.getElementById('menu-body').innerHTML = html;
 }
 
 // ════════════════════════════════════════════════════════
 // ARCHIVE RENDER
 // ════════════════════════════════════════════════════════
-function getArchiveOnMenuNames() {
-  return new Set(state.menu.drinks.map(d => d.name.toLowerCase()));
-}
-
 function renderArchive() {
-  const onMenu = getArchiveOnMenuNames();
+  const onMenu = new Set(CURRENT_MENU.map(d => d.toLowerCase()));
   let drinks = [...FULL_ARCHIVE];
 
-  if (state.archiveSearch) {
-    const q = state.archiveSearch.toLowerCase();
+  if (archiveSearch) {
+    const q = archiveSearch.toLowerCase();
     drinks = drinks.filter(d =>
       d.name.toLowerCase().includes(q) || d.ingredients.toLowerCase().includes(q));
   }
-  if (state.archiveFilter !== 'all') {
-    if (state.archiveFilter === 'Special') {
-      const specialNames = new Set(state.menu.drinks.filter(d => d.special).map(d => d.name.toLowerCase()));
-      drinks = drinks.filter(d => specialNames.has(d.name.toLowerCase()));
-    } else {
-      drinks = drinks.filter(d => d.category === state.archiveFilter);
-    }
+  if (archiveFilter !== 'all') {
+    drinks = drinks.filter(d => d.category === archiveFilter);
   }
 
   document.getElementById('archive-count').textContent =
@@ -1043,196 +945,16 @@ function renderArchive() {
 }
 
 function filterArchive(filter, btn) {
-  state.archiveFilter = filter;
+  archiveFilter = filter;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderArchive();
 }
+
 function searchArchive(val) {
-  state.archiveSearch = val;
+  archiveSearch = val;
   renderArchive();
 }
-
-// ════════════════════════════════════════════════════════
-// PAST MENUS
-// ════════════════════════════════════════════════════════
-function renderPastList() {
-  const list = state.pastMenus;
-  document.getElementById('past-detail').classList.remove('active');
-  const el = document.getElementById('past-list');
-  if (!list.length) {
-    el.innerHTML = '<p class="past-empty">No past menus archived yet.</p>';
-    return;
-  }
-  el.innerHTML = [...list].reverse().map((m, i) => `
-    <div class="past-menu-item" onclick="showPastDetail(${list.length - 1 - i})">
-      <div>
-        <div class="past-menu-name">${m.title} — ${m.season}</div>
-        <div class="past-menu-date">${m.archivedAt}</div>
-      </div>
-      <span class="past-arrow">→</span>
-    </div>`).join('');
-}
-
-function showPastDetail(idx) {
-  const m = state.pastMenus[idx];
-  document.getElementById('past-list').style.display = 'none';
-  const detail = document.getElementById('past-detail');
-  detail.classList.add('active');
-
-  const categories = ['Less Fruit', 'More Fruit', 'After', 'NA'];
-  const catLabels = { 'Less Fruit': 'Less Fruit', 'More Fruit': 'More Fruit', 'After': 'After', 'NA': 'No Booze' };
-  let html = `<div style="margin-bottom:2rem;">
-    <span class="menu-season-badge" style="display:inline-block; margin-bottom:1rem;">${m.season}</span>
-    <h2 style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--cream); line-height:1;">${m.title}</h2>
-    <p style="font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.2em; color:var(--text-faint); text-transform:uppercase; margin-top:0.75rem;">${m.archivedAt}</p>
-  </div>`;
-
-  categories.forEach(cat => {
-    const drinks = m.drinks.filter(d => d.category === cat);
-    if (!drinks.length) return;
-    html += `<div class="menu-category">
-      <div class="cat-header"><span class="cat-title">${catLabels[cat]}</span><div class="cat-rule"></div></div>
-      <div class="drinks-grid">`;
-    drinks.forEach(d => {
-      html += `<div class="drink-card">
-        <div class="drink-name">${d.name}</div>
-        <div class="drink-ingredients">${d.ingredients}</div>
-      </div>`;
-    });
-    html += `</div></div>`;
-  });
-  document.getElementById('past-detail-content').innerHTML = html;
-}
-
-function showPastList() {
-  document.getElementById('past-list').style.display = 'block';
-  document.getElementById('past-detail').classList.remove('active');
-}
-
-// ════════════════════════════════════════════════════════
-// ADMIN
-// ════════════════════════════════════════════════════════
-function adminLogin() {
-  const pw = document.getElementById('admin-password').value;
-  if (pw === ADMIN_PASS) {
-    state.adminLoggedIn = true;
-    document.getElementById('admin-login').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
-    renderAdminPanel();
-  } else {
-    document.getElementById('admin-error').style.display = 'block';
-  }
-}
-function adminLogout() {
-  state.adminLoggedIn = false;
-  document.getElementById('admin-login').style.display = 'flex';
-  document.getElementById('admin-panel').style.display = 'none';
-  document.getElementById('admin-password').value = '';
-  document.getElementById('admin-error').style.display = 'none';
-}
-
-function renderAdminPanel() {
-  const m = state.menu;
-  document.getElementById('admin-menu-title').value = m.title || '';
-  document.getElementById('admin-menu-subtitle').value = m.subtitle || '';
-  renderAdminDrinks();
-}
-
-function renderAdminDrinks() {
-  const catLabels = { 'Less Fruit': 'Less Fruit', 'More Fruit': 'More Fruit', 'After': 'After', 'NA': 'No Booze' };
-  const list = document.getElementById('admin-drink-list');
-  if (!state.menu.drinks.length) {
-    list.innerHTML = '<p style="color:var(--text-faint); font-style:italic;">No drinks on the menu yet.</p>';
-    return;
-  }
-  list.innerHTML = state.menu.drinks.map((d, i) => `
-    <div class="admin-drink-row">
-      <div class="admin-drink-info">
-        <div class="admin-drink-title">${d.name}${d.special ? '<span class="admin-drink-special">Special</span>' : ''}</div>
-        <div class="admin-drink-meta">${catLabels[d.category]} · ${d.ingredients}</div>
-      </div>
-      <div class="admin-drink-actions">
-        <button class="admin-icon-btn" onclick="toggleSpecial(${i})">${d.special ? 'Unmark' : 'Special'}</button>
-        <button class="admin-icon-btn del" onclick="adminDeleteDrink(${i})">Remove</button>
-      </div>
-    </div>`).join('');
-}
-
-function saveMenuSettings() {
-  state.menu.title = document.getElementById('admin-menu-title').value || 'Menu of the Day';
-  state.menu.subtitle = document.getElementById('admin-menu-subtitle').value || '';
-  state.menu.season = document.getElementById('admin-menu-title').value || 'Tonight';
-  saveState();
-  showToast('Menu settings saved!');
-}
-
-function adminAddDrink() {
-  const name = document.getElementById('admin-drink-name').value.trim();
-  const ing = document.getElementById('admin-drink-ingredients').value.trim();
-  const cat = document.getElementById('admin-drink-category').value;
-  const special = document.getElementById('admin-drink-special').checked;
-  if (!name || !ing) { showToast('Please fill in name and ingredients.'); return; }
-  state.menu.drinks.push({
-    id: Date.now(), name, ingredients: ing, category: cat, special
-  });
-  saveState();
-  document.getElementById('admin-drink-name').value = '';
-  document.getElementById('admin-drink-ingredients').value = '';
-  document.getElementById('admin-drink-special').checked = false;
-  renderAdminDrinks();
-  showToast(`${name} added to menu!`);
-}
-
-function adminDeleteDrink(idx) {
-  const name = state.menu.drinks[idx].name;
-  state.menu.drinks.splice(idx, 1);
-  saveState();
-  renderAdminDrinks();
-  showToast(`${name} removed.`);
-}
-
-function toggleSpecial(idx) {
-  state.menu.drinks[idx].special = !state.menu.drinks[idx].special;
-  saveState();
-  renderAdminDrinks();
-  showToast(state.menu.drinks[idx].special ? '✦ Marked as special!' : 'Special removed.');
-}
-
-function archiveCurrentMenu() {
-  const archived = {
-    ...JSON.parse(JSON.stringify(state.menu)),
-    archivedAt: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-  };
-  state.pastMenus.push(archived);
-  saveState();
-  showToast('Menu archived to Past Menus!');
-}
-
-function showToast(msg) {
-  const t = document.getElementById('admin-toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-// ════════════════════════════════════════════════════════
-// HANDLE /admin URL
-// ════════════════════════════════════════════════════════
-if (window.location.hash === '#admin') {
-  enterBar();
-  showPage('admin');
-}
-
-// Handle nav click to admin (secret: click brand 5 times)
-let brandClicks = 0;
-document.querySelector('.nav-brand').addEventListener('click', () => {
-  brandClicks++;
-  if (brandClicks >= 5) {
-    brandClicks = 0;
-    showPage('admin');
-  }
-});
 
 // ════════════════════════════════════════════════════════
 // LIGHTBOX
@@ -1247,12 +969,5 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 </script>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">×</span>
-  <img src="" alt="" class="lightbox-img" id="lightbox-img">
-</div>
-
 </body>
 </html>
