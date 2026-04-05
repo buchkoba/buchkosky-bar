@@ -229,8 +229,8 @@ body::after {
   line-height: 1.2;
 }
 .drink-ingredients {
-  font-size: 0.95rem; font-style: italic; color: rgba(212,201,176,0.78);
-  line-height: 1.6;
+  font-size: 0.9rem; font-style: italic; color: var(--text-dim);
+  line-height: 1.5;
 }
 
 /* ════════════════════════════════════════════════════════
@@ -417,7 +417,7 @@ body::after {
   font-weight: 600; color: var(--cream); margin-bottom: 0.2rem;
 }
 .archive-drink-ing {
-  font-size: 0.88rem; font-style: italic; color: rgba(212,201,176,0.65); line-height: 1.5;
+  font-size: 0.85rem; font-style: italic; color: var(--text-faint); line-height: 1.4;
 }
 .on-menu-tag {
   font-family: 'Space Mono', monospace; font-size: 7px;
@@ -442,8 +442,6 @@ body::after {
   .nav-links .nav-link:nth-child(n+3) { display: none; }
   .drinks-grid { grid-template-columns: 1fr; }
   .archive-grid { grid-template-columns: 1fr; }
-  .drink-ingredients { font-size: 1rem; color: rgba(212,201,176,0.85); }
-  .archive-drink-ing { font-size: 0.92rem; color: rgba(212,201,176,0.72); }
 }
 </style>
 </head>
@@ -492,7 +490,7 @@ body::after {
 <div id="page-menu" class="page">
   <div class="menu-hero">
     <div class="menu-hero-meta">
-      <span class="menu-date">February 2026</span>
+      <span class="menu-date">Spring 2026</span>
     </div>
     <h1 class="menu-title">Menu of the Day</h1>
     <p class="menu-subtitle"></p>
@@ -511,24 +509,36 @@ body::after {
           <div class="drink-ingredients">2 Bourbon, .25 Chai Demerara Simple, Trinity Bitters</div>
         </div>
         <div class="drink-card">
-          <div class="drink-name">Sazerac</div>
-          <div class="drink-ingredients">1 Rye, .5 Cognac, .5 Apple Brandy, .25 Demerara, Peychauds, Ango, Absinthe</div>
-        </div>
-        <div class="drink-card">
-          <div class="drink-name">Vieux Carré</div>
-          <div class="drink-ingredients">.75 Rye, .75 Sweet Vermouth, .75 Brandy, bar spoon Benedictine, Peychauds, Angostura</div>
-        </div>
-        <div class="drink-card">
-          <div class="drink-name">Muppets Drink Manhattan</div>
-          <div class="drink-ingredients">2 Rye, .5 Amaro, .5 Sweet Vermouth, Angostura, Peychauds, & Orange Bitters</div>
-        </div>
-        <div class="drink-card is-special">
           <div class="drink-name">After Orleans</div>
           <div class="drink-ingredients">2 Rye, .75 Sweet Vermouth, .25 Benedictine, .25 Coffee Infused Cappelletti, 2 Peychaud's, Twist</div>
         </div>
         <div class="drink-card">
           <div class="drink-name">Stoned Fruit</div>
           <div class="drink-ingredients">2 Rye, .5 Sweet Vermouth, .5 Amaro Di Angostura, .25 Giffard Apricot, Orange Bitters, Twist</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Haurt Man Here</div>
+          <div class="drink-ingredients">1.5 Tequila, .75 Amaro, .75 Sweet Vermouth</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Cherry Carray</div>
+          <div class="drink-ingredients">2 Rye, .5 Cherry Heering, .5 Benedictine, Twist</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Sazerac</div>
+          <div class="drink-ingredients">1 Rye, .5 Cognac, .5 Apple Brandy, .25 Demerara Simple, Peychauds, Ango, Absinthe</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Vieux Carré</div>
+          <div class="drink-ingredients">.75 Rye, .75 Sweet Vermouth, .75 Brandy, bar spoon Benedictine, Peychauds, Angostura</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">White Negroni</div>
+          <div class="drink-ingredients">1 Gin, 1 Suze (or Italicus), 1 Dry Vermouth</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Chrysanthemum</div>
+          <div class="drink-ingredients">2 Dry Vermouth, 1 Benedictine, 2 Dashes Absinthe, Orange Bitters</div>
         </div>
       </div>
     </div>
@@ -540,21 +550,33 @@ body::after {
         <div class="cat-rule"></div>
       </div>
       <div class="drinks-grid">
-        <div class="drink-card is-special">
-          <div class="drink-name">Paper Plane</div>
-          <div class="drink-ingredients">.75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lemon</div>
+        <div class="drink-card">
+          <div class="drink-name">Mexican Candy</div>
+          <div class="drink-ingredients">2 Tequila, .75 Simple, .75 Lime, Orange Bitters, Pineapple Soda</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">L&amp;I Whiskey Sour</div>
+          <div class="drink-ingredients">2 Bourbon, .75 Simple, .75 Lime, Cherry Vanilla Bitters</div>
         </div>
         <div class="drink-card">
           <div class="drink-name">Water Lily</div>
-          <div class="drink-ingredients">.75 Gin, .75 Orange Liquor, .75 Lemon, .75 Violette</div>
+          <div class="drink-ingredients">.75 Gin, .75 Orange Liquor, .75 Lime, .75 Violet Liquor</div>
         </div>
         <div class="drink-card">
           <div class="drink-name">Margarita</div>
-          <div class="drink-ingredients">2 Tequila, .75 Orange, .75 Lime, .25 Simple</div>
+          <div class="drink-ingredients">2 Tequila, .75 Orange Liquor, .75 Lime, .25 Simple</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Clover Club</div>
+          <div class="drink-ingredients">2 Gin, .75 Simple, .75 Lime, Raspberries</div>
         </div>
         <div class="drink-card">
           <div class="drink-name">Disguised in Mexico</div>
-          <div class="drink-ingredients">1 Pineapple Chipotle Gin, 1 Tequila, .25 Simple, .75 Grapefruit, .75 Lime</div>
+          <div class="drink-ingredients">1 Pineapple Chipotle Gin, 1 Tequila, .25 Simple, .75 Grapefruit Liquor, .75 Lime</div>
+        </div>
+        <div class="drink-card">
+          <div class="drink-name">Paper Plane</div>
+          <div class="drink-ingredients">.75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lime</div>
         </div>
       </div>
     </div>
@@ -855,8 +877,8 @@ const FULL_ARCHIVE = [
   { name: "In Cold Blodo", ingredients: "1 Rye, 1 Cynar, 1 Sweet Vermouth, Twist", category: "Less Fruit" },
   { name: "Cherry Carray", ingredients: "2 Rye, .5 Cherry Heering, .5 Benedictine, Twist", category: "Less Fruit" },
   { name: "Haurt Man Here", ingredients: "1.5 Tequila, .75 Amaro, .75 Sweet Vermouth", category: "Less Fruit" },
-  { name: "After Orleans", ingredients: "2 Rye, .75 Sweet Vermouth, .25 Benedictine, .25 Coffee Infused Cappelletti, 2 Peychaud's, Twist", category: "Less Fruit" },
-  { name: "Stoned Fruit", ingredients: "2 Rye, .5 Sweet Vermouth, .5 Amaro Di Angostura, .25 Giffard Apricot, Orange Bitters, Twist", category: "Less Fruit" },
+  { name: "Midnight in New Orleans", ingredients: "2 Rye, .75 Sweet Vermouth, .25 Benedictine, .25 Coffee Infused Cappelletti, 2 Peychaud's, Twist", category: "Less Fruit" },
+  { name: "Stone Fruit Orchard", ingredients: "2 Rye, .5 Sweet Vermouth, .5 Amaro Di Angostura, .25 Giffard Apricot, Orange Bitters, Twist", category: "Less Fruit" },
   { name: "Paper Plane", ingredients: ".75 Bourbon, .75 Aperol, .75 Amaro Nonino, .75 Lemon", category: "More Fruit" },
   { name: "Water Lily", ingredients: ".75 Gin, .75 Orange Liquor, .75 Lemon, .75 Violette", category: "More Fruit" },
   { name: "Margarita", ingredients: "2 Tequila, .75 Orange, .75 Lime, .25 Simple", category: "More Fruit" },
@@ -896,8 +918,8 @@ const CURRENT_MENU = [
   "Sazerac",
   "Vieux Carré",
   "Muppets Drink Manhattan",
-  "After Orleans",
-  "Stoned Fruit",
+  "Midnight in New Orleans",
+  "Stone Fruit Orchard",
   "Paper Plane",
   "Water Lily",
   "Margarita",
